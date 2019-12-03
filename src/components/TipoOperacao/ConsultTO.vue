@@ -45,7 +45,7 @@ export default {
             this.listaTipoOperacoesId.push(tipoOperacao);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   computed: {

@@ -93,12 +93,11 @@ export default {
           this.tipoMaquinaId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The machine id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getTiposMaquina() {
@@ -112,7 +111,7 @@ export default {
             this.listaTiposMaquinasId.push(data[key].tipoMaquinaId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

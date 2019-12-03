@@ -101,12 +101,11 @@ export default {
           this.maquinasId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The production line id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaMaquinas() {
@@ -120,7 +119,7 @@ export default {
             this.listaMaquinasId.push(data[key].maquinaId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {
@@ -145,7 +144,6 @@ export default {
   },
   watch: {
     version() {
-      console.warn("bateu");
       this.getListaMaquinas();
     }
   }

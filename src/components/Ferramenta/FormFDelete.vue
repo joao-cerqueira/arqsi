@@ -73,12 +73,11 @@ export default {
           this.ferramentaId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the tool";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaFerramenta() {
@@ -92,7 +91,7 @@ export default {
             this.listaFerramentasId.push(data[key].ferramentaId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

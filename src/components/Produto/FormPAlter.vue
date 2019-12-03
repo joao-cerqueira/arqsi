@@ -120,12 +120,11 @@ export default {
           this.planoFabricoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getProdutos() {
@@ -139,7 +138,7 @@ export default {
             this.listaProdutosId.push(data[key].produtoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaTipoProdutos() {
       this.listaTiposProdutosId = [];
@@ -152,7 +151,7 @@ export default {
             this.listaTiposProdutosId.push(data[key].tipoProdutoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaPlanosFabrico() {
       this.listaPlanosFabricoId = [];
@@ -165,7 +164,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

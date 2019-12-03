@@ -88,12 +88,11 @@ export default {
           this.tipoOperacaoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaTipoOperacoes() {
@@ -107,7 +106,7 @@ export default {
             this.listaTiposOperacoesId.push(data[key].tipoOperacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

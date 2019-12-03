@@ -157,12 +157,11 @@ export default {
             this.dialogColor = "green";
             this.$store.commit("updateRunningVersion");
           })
-          .catch(error => {
+          .catch(() => {
             this.dialogHeadline = "Failure";
             this.dialogText = "The product id entered already exists!";
             this.dialog = true;
             this.dialogColor = "red";
-            console.log(error.response);
           });
       } else {
         const formData = {
@@ -184,13 +183,12 @@ export default {
             this.dialogColor = "green";
             this.$store.commit("updateRunningVersion");
           })
-          .catch(error => {
+          .catch(() => {
             this.dialogHeadline = "Failure";
             this.dialogText =
               "The Manufacturing Plan id entered already exists!";
             this.dialog = true;
             this.dialogColor = "red";
-            console.log(error.response);
           });
       }
 
@@ -217,12 +215,11 @@ export default {
           this.dialogColor = "green";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The product id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaTipoOperacoes() {
@@ -236,7 +233,7 @@ export default {
             this.listaTiposOperacoesId.push(data[key].tipoOperacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getOperacoesId() {
       this.listaOperacoesId = [];
@@ -249,7 +246,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaPlanosFabrico() {
       this.listaPlanosFabricoId = [];
@@ -262,7 +259,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaTipoProdutos() {
       this.listaTiposProdutosId = [];
@@ -275,7 +272,7 @@ export default {
             this.listaTiposProdutosId.push(data[key].tipoProdutoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

@@ -107,12 +107,11 @@ export default {
           this.operacoesId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaPlanosFabrico() {
@@ -126,7 +125,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getOperacoesId() {
       this.operacoesId = [];
@@ -139,7 +138,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

@@ -71,12 +71,11 @@ export default {
           this.operacaoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the operation";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getOperacoesId() {
@@ -91,7 +90,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

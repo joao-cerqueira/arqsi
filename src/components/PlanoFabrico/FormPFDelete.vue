@@ -74,13 +74,12 @@ export default {
           this.planoFabricoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the manufacturing plan";
           this.dialog = true;
           this.dialogColor = "red";
           this.$store.commit("updateRunningVersion");
-          console.log(error.response);
         });
     },
     getListaPlanosFabrico() {
@@ -94,7 +93,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

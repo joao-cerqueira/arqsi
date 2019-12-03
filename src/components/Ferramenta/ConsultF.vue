@@ -45,7 +45,7 @@ export default {
             this.listaFerramentasId.push(ferramenta);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   computed: {
