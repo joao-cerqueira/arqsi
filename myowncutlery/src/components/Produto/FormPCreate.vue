@@ -25,8 +25,14 @@
           </v-col>
         </v-row>
         <v-row>
+          <v-col>
+            <h3>Select Manufactoring Plan</h3>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col cols="12" md="12">
             <v-overflow-btn
+              :disabled="alternative1"
               v-model="planoFabricoId"
               class="my-2"
               :items="listaPlanosFabricoId"
@@ -34,6 +40,44 @@
               editable
               item-value="text"
             ></v-overflow-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <h3>- or -</h3>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
+            <v-text-field
+              :disabled="alternative2"
+              v-model="planoFabricoIdNew"
+              :rules="idRules"
+              label="Manufacturing Plan ID"
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
+            <v-text-field
+              :disabled="alternative2"
+              v-model="descricaoNew"
+              label="Description"
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
+            <v-select
+              :disabled="alternative2"
+              v-model="operacoesIdNew"
+              :items="listaOperacoesId"
+              chips="chips"
+              multiple="multiple"
+              label="Operations ID"
+            ></v-select>
           </v-col>
         </v-row>
       </v-container>
@@ -79,9 +123,12 @@ export default {
     produtoId: "",
     tipoProdutoId: "",
     planoFabricoId: "",
+    planoFabricoIdNew: "",
     listaPlanosFabricoId: [],
-
+    listaOperacoesId: [],
+    operacoesIdNew: "",
     descricao: "",
+    descricaoNew: "",
     idRules: [
       v =>
         (v > 0 && v < 100000000) ||
@@ -91,24 +138,83 @@ export default {
   }),
   methods: {
     onSubmit() {
-      const formData = {
+      var aux = 1;
+      if (this.planoFabricoId != "") {
+        aux = 0;
+        const formData = {
+          ProdutoId: parseInt(this.produtoId),
+          Descricao: this.descricao,
+          TipoProdutoId: parseInt(this.tipoProdutoId),
+          planoFabricoId: parseInt(this.planoFabricoId)
+        };
+
+        axios
+          .post("https://localhost:5002/api/Produto", formData)
+          .then(() => {
+            this.dialogHeadline = "Sucess";
+            this.dialogText = "Product Created with sucess!";
+            this.dialog = true;
+            this.dialogColor = "green";
+            this.$store.commit("updateRunningVersion");
+          })
+          .catch(error => {
+            this.dialogHeadline = "Failure";
+            this.dialogText = "The product id entered already exists!";
+            this.dialog = true;
+            this.dialogColor = "red";
+            console.log(error.response);
+          });
+      } else {
+        const formData = {
+          PlanoFabricoId: parseInt(this.planoFabricoIdNew),
+          Descricao: this.descricaoNew,
+          ListaOperacoesId: []
+        };
+
+        this.operacoesIdNew.forEach(element => {
+          formData.ListaOperacoesId.push(parseInt(element));
+        });
+
+        axios
+          .post("https://localhost:5002/api/PlanoFabrico", formData)
+          .then(() => {
+            this.dialogHeadline = "Sucess";
+            this.dialogText = "Manufacturing Plan created with sucess!";
+            this.dialog = true;
+            this.dialogColor = "green";
+            this.$store.commit("updateRunningVersion");
+          })
+          .catch(error => {
+            this.dialogHeadline = "Failure";
+            this.dialogText =
+              "The Manufacturing Plan id entered already exists!";
+            this.dialog = true;
+            this.dialogColor = "red";
+            console.log(error.response);
+          });
+      }
+
+      if (aux == 1) {
+        setTimeout(() => {
+          this.aux();
+        }, 2000);
+      }
+    },
+    aux() {
+      const formDataP = {
         ProdutoId: parseInt(this.produtoId),
         Descricao: this.descricao,
         TipoProdutoId: parseInt(this.tipoProdutoId),
-        planoFabricoId: parseInt(this.planoFabricoId)
+        planoFabricoId: parseInt(this.planoFabricoIdNew)
       };
 
       axios
-        .post("https://localhost:5002/api/Produto", formData)
+        .post("https://localhost:5002/api/Produto", formDataP)
         .then(() => {
           this.dialogHeadline = "Sucess";
           this.dialogText = "Product Created with sucess!";
           this.dialog = true;
           this.dialogColor = "green";
-          this.produtoId = "";
-          this.descricao = "";
-          this.tipoProdutoId = "";
-          this.planoFabricoId = "";
           this.$store.commit("updateRunningVersion");
         })
         .catch(error => {
@@ -128,6 +234,19 @@ export default {
 
           for (let key in data) {
             this.listaTiposOperacoesId.push(data[key].tipoOperacaoId);
+          }
+        })
+        .catch(error => console.log(error));
+    },
+    getOperacoesId() {
+      this.listaOperacoesId = [];
+      axios
+        .get("https://localhost:5001/api/Operacao")
+        .then(res => {
+          const data = res.data;
+
+          for (let key in data) {
+            this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
         .catch(error => console.log(error));
@@ -162,6 +281,7 @@ export default {
   created() {
     this.getListaTipoProdutos();
     this.getListaPlanosFabrico();
+    this.getOperacoesId();
   },
   computed: {
     // a computed getter
@@ -174,8 +294,25 @@ export default {
         !parseInt(this.produtoId) ||
         this.descricao == "" ||
         this.tipoProdutoId == "" ||
-        this.planoFabricoId == ""
+        (this.planoFabricoId == "" &&
+          (this.planoFabricoIdNew == "" ||
+            this.descricaoNew == "" ||
+            this.operacoesIdNew == ""))
       );
+    },
+    alternative1() {
+      if (this.planoFabricoIdNew == "") {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    alternative2() {
+      if (this.planoFabricoId == "") {
+        return false;
+      } else {
+        return true;
+      }
     },
     version() {
       return this.$store.state.runningVersion;
@@ -185,6 +322,7 @@ export default {
     version() {
       this.getListaTipoProdutos();
       this.getListaPlanosFabrico();
+      this.getOperacoesId();
     }
   }
 };

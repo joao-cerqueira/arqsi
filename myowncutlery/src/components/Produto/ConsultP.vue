@@ -24,32 +24,17 @@ export default {
         { text: "Product ID", value: "produtoId" },
         { text: "Description", value: "descricao" },
         { text: "Product Type ID", value: "tipoProdutoId" },
-        { text: "Manufacturing Plan", value: "planoFabricoId" }
+        { text: "Manufacturing Plan (Operations)", value: "planoFabricoId" }
       ],
       listaProdutosId: []
     };
   },
   methods: {
     getListaPlanosFabrico(planoId) {
-      planosFabrico = [];
       axios
-        .get("https://localhost:5002/api/PlanoFabrico/"+planoId)
+        .get("https://localhost:5002/api/PlanoFabrico/" + planoId)
         .then(res => {
-          const data = res.data;
-
-          for (let element in data) {
-            let planoFabrico = {
-              planoFabricoId: "",
-              descricao: "",
-              operacoesId: []
-            };
-
-            planoFabrico.operacoesId = (data[element].listaOperacoesId + "")
-              .split(",")
-              .join(" ");
-            planosFabrico.push(planoFabrico);
-          }
-          return planosFabrico.operacoesId[0];
+          return res.data.listaOperacoesId;
         })
         .catch(error => console.log(error));
     },
@@ -70,9 +55,19 @@ export default {
             produto.produtoId = data[element].produtoId;
             produto.descricao = data[element].descricao;
             produto.tipoProdutoId = data[element].tipoProdutoId;
-            produto.operacoesId = getListaPlanosFabrico(data[element].planoFabricoId);
 
-            this.listaProdutosId.push(produto);
+            axios
+              .get(
+                "https://localhost:5002/api/PlanoFabrico/" +
+                  data[element].planoFabricoId
+              )
+              .then(res => {
+                produto.planoFabricoId = (res.data.listaOperacoesId + "")
+                  .split(",")
+                  .join(" ");
+                this.listaProdutosId.push(produto);
+              })
+              .catch(error => console.log(error));
           }
         })
         .catch(error => console.log(error));
