@@ -121,7 +121,7 @@ export default {
           this.ferramentaId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = error.response.data;
           this.dialog = true;
