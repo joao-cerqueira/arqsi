@@ -28,13 +28,11 @@ const routes = [
     name: "maquina",
     component: Maquina,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
+
       }
     }
   },
@@ -43,13 +41,11 @@ const routes = [
     name: "tipoMaquina",
     component: TipoMaquina,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
     }
   },
@@ -58,14 +54,12 @@ const routes = [
     name: "operacao",
     component: Operacao,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -73,14 +67,13 @@ const routes = [
     name: "tipoOperacao",
     component: TipoOperacao,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -88,14 +81,12 @@ const routes = [
     name: "linhaProducao",
     component: LinhaProducao,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -103,14 +94,12 @@ const routes = [
     name: "ferramenta",
     component: Ferramenta,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -118,14 +107,12 @@ const routes = [
     name: "planoFabrico",
     component: PlanoFabrico,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -133,14 +120,12 @@ const routes = [
     name: "produto ",
     component: Produto,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -148,14 +133,12 @@ const routes = [
     name: "tipoProduto",
     component: TipoProduto,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
@@ -163,14 +146,12 @@ const routes = [
     name: "simulation",
     component: Simulation,
     beforeEnter(to, from, next) {
-      try {
-        if (store.state.userLogged) {
-          next()
-        } else {
-          next("/login");
-        }
-      } catch () {
+      if (store.state.userLogged) {
+        next()
+      } else {
+        next("/login");
       }
+
     }
   },
   {
