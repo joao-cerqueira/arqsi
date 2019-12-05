@@ -50,7 +50,7 @@ export default {
             this.linhasProducao.push(linhaProducao);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   computed: {

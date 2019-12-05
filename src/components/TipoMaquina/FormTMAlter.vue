@@ -113,7 +113,6 @@ export default {
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaTipoMaquinas() {
@@ -127,7 +126,7 @@ export default {
             this.listaTiposMaquinasId.push(data[key].tipoMaquinaId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getOperacoesId() {
       this.listaOperacoesId = [];
@@ -140,7 +139,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

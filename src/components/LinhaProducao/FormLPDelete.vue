@@ -75,13 +75,12 @@ export default {
           this.$store.commit("updateRunningVersion");
           this.getLinhasProducao();
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the production Line";
           this.dialog = true;
           this.dialogColor = "red";
           this.$store.commit("updateRunningVersion");
-          console.log(error.response);
         });
     },
     getLinhasProducao() {
@@ -95,7 +94,7 @@ export default {
             this.listaLinhasProducaoId.push(data[key].linhaProducaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

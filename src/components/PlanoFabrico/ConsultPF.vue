@@ -50,7 +50,7 @@ export default {
             this.planosFabrico.push(planoFabrico);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   computed: {

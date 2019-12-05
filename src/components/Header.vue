@@ -33,7 +33,6 @@ export default {
       this.$store.commit("changeNavBarBtn");
     },
     logout() {
-      console.log("Logout");
       this.$store.state.userLogged = null;
       this.$store.state.token = null;
     }

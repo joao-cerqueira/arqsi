@@ -73,12 +73,11 @@ export default {
           this.tipoOperacaoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(error => {
+        .catch(() => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the operation type";
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getListaTipoOperacoes() {
@@ -92,7 +91,7 @@ export default {
             this.listaTipoOperacoesId.push(data[key].tipoOperacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

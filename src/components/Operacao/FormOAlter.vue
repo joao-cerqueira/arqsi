@@ -126,7 +126,6 @@ export default {
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
-          console.log(error.response);
         });
     },
     getOperacoesId() {
@@ -140,7 +139,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaFerramentas() {
       this.listaFerramentaId = [];
@@ -153,7 +152,7 @@ export default {
             this.listaFerramentaId.push(data[key].ferramentaId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaTipoOperacoes() {
       this.listaTiposOperacoesId = [];
@@ -166,7 +165,7 @@ export default {
             this.listaTiposOperacoesId.push(data[key].tipoOperacaoId);
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   created() {

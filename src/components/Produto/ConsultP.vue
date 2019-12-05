@@ -36,7 +36,7 @@ export default {
         .then(res => {
           return res.data.listaOperacoesId;
         })
-        .catch(error => console.log(error));
+        .catch();
     },
     getListaProdutos() {
       this.listaProdutosId = [];
@@ -67,10 +67,10 @@ export default {
                   .join(" ");
                 this.listaProdutosId.push(produto);
               })
-              .catch(error => console.log(error));
+              .catch();
           }
         })
-        .catch(error => console.log(error));
+        .catch();
     }
   },
   computed: {
