@@ -71,11 +71,12 @@ export default {
           this.produtoId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the product";
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getProdutosId() {
@@ -90,7 +91,7 @@ export default {
             this.listaProdutosId.push(data[key].produtoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

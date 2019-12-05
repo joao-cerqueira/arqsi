@@ -112,11 +112,12 @@ export default {
           this.ferramentaId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The operation id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getListaTipoOperacoes() {
@@ -130,7 +131,7 @@ export default {
             this.listaTiposOperacoesId.push(data[key].tipoOperacaoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     },
     getListaFerramentas() {
       this.listaFerramentaId = [];
@@ -143,7 +144,7 @@ export default {
             this.listaFerramentaId.push(data[key].ferramentaId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

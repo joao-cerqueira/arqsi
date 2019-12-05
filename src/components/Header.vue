@@ -1,7 +1,7 @@
 <template>
   <div class="arqsi-header">
     <v-app-bar class="arqsi-header__bar" dark>
-      <v-app-bar-nav-icon :disabled="this.$store.state.showNavBarBtn" @click.stop="showMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="this.$store.state.userLogged" @click.stop="showMenu"></v-app-bar-nav-icon>
 
       <router-link to="/" class="arqsi-header__title">
         <v-toolbar-title>My Own Cutlery</v-toolbar-title>
@@ -9,6 +9,15 @@
       </router-link>
 
       <v-spacer></v-spacer>
+      <v-btn v-if="!this.$store.state.userLogged" to="/signup" text>
+        <v-icon>mdi-account-plus</v-icon>
+      </v-btn>
+      <v-btn v-if="!this.$store.state.userLogged" to="/login" text>
+        <v-icon>mdi-login</v-icon>
+      </v-btn>
+      <v-btn v-if="this.$store.state.userLogged" to="/" @click="logout"  text>
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -22,6 +31,11 @@ export default {
     },
     ativarNavBarBtn() {
       this.$store.commit("changeNavBarBtn");
+    },
+    logout() {
+      console.log("Logout");
+      this.$store.state.userLogged = null;
+      this.$store.state.token = null;
     }
   }
 };

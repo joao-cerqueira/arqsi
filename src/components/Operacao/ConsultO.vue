@@ -51,7 +51,7 @@ export default {
             this.listaOperacoesId.push(operacao);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   computed: {

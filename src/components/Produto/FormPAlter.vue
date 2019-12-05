@@ -125,6 +125,7 @@ export default {
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getProdutos() {
@@ -138,7 +139,7 @@ export default {
             this.listaProdutosId.push(data[key].produtoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     },
     getListaTipoProdutos() {
       this.listaTiposProdutosId = [];
@@ -151,7 +152,7 @@ export default {
             this.listaTiposProdutosId.push(data[key].tipoProdutoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     },
     getListaPlanosFabrico() {
       this.listaPlanosFabricoId = [];
@@ -164,7 +165,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

@@ -77,12 +77,13 @@ export default {
           this.$store.commit("updateRunningVersion");
           this.listaMaquinasId = this.getMaquinasList();
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail deleting the machine";
           this.dialog = true;
           this.dialogColor = "red";
           this.$store.commit("updateRunningVersion");
+          console.log(error.response);
         });
     },
     getMaquinasList() {
@@ -96,7 +97,7 @@ export default {
             result.push(data[key].maquinaId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
       return result;
     }
   },

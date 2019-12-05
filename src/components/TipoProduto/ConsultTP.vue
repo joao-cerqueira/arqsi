@@ -39,7 +39,7 @@ export default {
             this.listaTipoProdutosId.push(data[key]);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   computed: {

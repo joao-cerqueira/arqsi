@@ -101,11 +101,12 @@ export default {
           this.tipoMaquinaId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "Fail altering the machine";
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getListaMaquinas() {
@@ -119,7 +120,7 @@ export default {
             this.listaTiposMaquinasId.push(data[key].tipoMaquinaId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
 
       axios
         .get("https://localhost:5001/api/Maquina")
@@ -130,7 +131,7 @@ export default {
             this.listaMaquinasId.push(data[key].maquinaId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

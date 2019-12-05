@@ -93,6 +93,7 @@ export default {
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getListaFerramentas() {
@@ -106,7 +107,7 @@ export default {
             this.listaFerramentasId.push(data[key].ferramentaId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

@@ -83,11 +83,12 @@ export default {
           this.descricao = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The operation type id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     }
   },

@@ -48,7 +48,7 @@ export default {
             this.maquinas.push(maquina);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   computed: {

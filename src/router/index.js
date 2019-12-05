@@ -11,6 +11,9 @@ import PlanoFabrico from "../views/PlanoFabrico";
 import Produto from "../views/Produto";
 import TipoProduto from "../views/TipoProduto";
 import Simulation from "../views/Simulacao";
+import Login from "../views/Login";
+import Signup from "../views/Signup";
+import store from "../store";
 
 Vue.use(VueRouter);
 
@@ -23,52 +26,172 @@ const routes = [
   {
     path: "/machine",
     name: "maquina",
-    component: Maquina
+    component: Maquina,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/machine-type",
     name: "tipoMaquina",
-    component: TipoMaquina
+    component: TipoMaquina,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/operation",
     name: "operacao",
-    component: Operacao
+    component: Operacao,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/operation-type",
     name: "tipoOperacao",
-    component: TipoOperacao
+    component: TipoOperacao,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/production-line",
     name: "linhaProducao",
-    component: LinhaProducao
+    component: LinhaProducao,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/tool",
     name: "ferramenta",
-    component: Ferramenta
+    component: Ferramenta,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/manufacturing-plan",
     name: "planoFabrico",
-    component: PlanoFabrico
+    component: PlanoFabrico,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/product",
     name: "produto ",
-    component: Produto
+    component: Produto,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/product-type",
     name: "tipoProduto",
-    component: TipoProduto
+    component: TipoProduto,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
   },
   {
     path: "/simulation",
     name: "simulation",
-    component: Simulation
+    component: Simulation,
+    beforeEnter(to, from, next) {
+      try {
+        if (store.state.userLogged) {
+          next()
+        } else {
+          next("/login");
+        }
+      } catch (e) {
+        console.log('Erro: ' + e);
+      }
+    }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: Signup
   },
   {
     path: "/about",

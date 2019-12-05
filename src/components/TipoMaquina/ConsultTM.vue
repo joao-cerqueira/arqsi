@@ -50,7 +50,7 @@ export default {
             this.tipoMaquinas.push(tipoMaquina);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   computed: {

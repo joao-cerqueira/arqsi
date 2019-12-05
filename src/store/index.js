@@ -6,7 +6,9 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     drawer: false,
-    runningVersion: 0
+    runningVersion: 0,
+    userLogged : null,
+    userToken : null
   },
   getters: {
     getDrawer: state => {
@@ -17,6 +19,9 @@ const store = new Vuex.Store({
     },
     getVersion: state => {
       return state.runningVersion;
+    },
+    userLogged: state => {
+      return state.userLogged;
     }
   },
   mutations: {
@@ -28,7 +33,11 @@ const store = new Vuex.Store({
     },
     updateRunningVersion: state => {
       state.runningVersion += 1;
-    }
+    },
+    authenticate(state, user, token) {
+      state.userLogged = user;
+      state.userToken = token;
+  }
   },
   actions: {},
   modules: {}

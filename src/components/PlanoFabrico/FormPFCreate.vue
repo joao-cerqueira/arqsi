@@ -102,11 +102,12 @@ export default {
           this.operacoesId = "";
           this.$store.commit("updateRunningVersion");
         })
-        .catch(() => {
+        .catch(error => {
           this.dialogHeadline = "Failure";
           this.dialogText = "The Manufacturing Plan id entered already exists!";
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getListaOperacoes() {
@@ -120,7 +121,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {

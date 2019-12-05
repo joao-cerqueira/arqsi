@@ -12,7 +12,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>Administrator</v-list-item-title>
+          <v-list-item-title>{{ username }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -20,7 +20,7 @@
 
       <v-list dense>
         <v-list-group
-          v-for="item in items"
+          v-for="item in navBarPermited"
           :key="item.title"
           link
           :prepend-icon="item.icon"
@@ -48,6 +48,7 @@ export default {
         {
           title: "Factory",
           icon: "mdi-factory",
+          configuratorAcess: true,
           elements: [
             { title: "Machines", to: "/machine" },
             { title: "Machine Types", to: "/machine-type" },
@@ -61,6 +62,7 @@ export default {
         {
           title: "Produts",
           icon: "mdi-silverware-variant",
+          configuratorAcess: true,
           elements: [
             {
               title: "Manufacturing Plan",
@@ -75,9 +77,44 @@ export default {
               to: "/product-type"
             }
           ]
+        },
+        {
+          title: "Orders",
+          icon: "mdi-package",
+          configuratorAcess: false,
+          elements: [
+            { title: "New Order", to: "/" },
+            { title: "My Orders", to: "/" }
+          ]
+        },
+        {
+          title: "Orders",
+          icon: "mdi-package",
+          configuratorAcess: true,
+          elements: [
+            { title: "Modify Ordes", to: "/" },
+            { title: "Cancel Orders", to: "/" }
+          ]
         }
       ]
     };
+  },
+  computed: {
+    username: function() {
+      return this.$store.state.userLogged.name;
+    },
+    isConfigurator: function() {
+      return "configurator" == this.$store.state.userLogged.role;
+    },
+    navBarPermited: function() {
+      var permitedTabs = [];
+      for (var item in this.items) {
+        if (this.items[item].configuratorAcess == this.isConfigurator) {
+          permitedTabs.push(this.items[item]);
+        }
+      }
+      return permitedTabs;
+    }
   }
 };
 </script>

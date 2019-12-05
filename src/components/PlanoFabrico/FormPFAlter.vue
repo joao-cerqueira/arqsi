@@ -112,6 +112,7 @@ export default {
           this.dialogText = error.response.data;
           this.dialog = true;
           this.dialogColor = "red";
+          console.log(error.response);
         });
     },
     getListaPlanosFabrico() {
@@ -125,7 +126,7 @@ export default {
             this.listaPlanosFabricoId.push(data[key].planoFabricoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     },
     getOperacoesId() {
       this.operacoesId = [];
@@ -138,7 +139,7 @@ export default {
             this.listaOperacoesId.push(data[key].operacaoId);
           }
         })
-        .catch();
+        .catch(error => console.log(error));
     }
   },
   created() {
