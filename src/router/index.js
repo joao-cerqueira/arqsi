@@ -34,8 +34,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -50,8 +49,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -66,8 +64,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -82,8 +79,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -98,8 +94,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -114,8 +109,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -130,8 +124,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -146,8 +139,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -162,8 +154,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
@@ -178,8 +169,7 @@ const routes = [
         } else {
           next("/login");
         }
-      } catch (e) {
-        console.log('Erro: ' + e);
+      } catch () {
       }
     }
   },
